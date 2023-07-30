@@ -1,0 +1,659 @@
+<div id="header__wrapper">
+    <header id="header">
+        <a href="../index.html"></a>
+        <p>Arcane</p>
+        <ul class="menu-container">
+            <li class="nav"><a (click)="scrollToElement('header__wrapper')">Dashboard</a></li>
+            <li class="nav">
+                <a href="https://github.com/ArcaneDeFi/arcane-contracts/blob/dev-hardhat/Audit-report.pdf" target="_blank">
+                    Audit
+                </a>
+            </li>
+            <li class="nav"><a href="https://arcane-1.gitbook.io/arcane/main-smart-contracts/pool" target="_blank">Docs</a></li>
+            <li class="nav"><a (click)="scrollToElement('team__container')">Authors</a></li>
+        </ul>
+        <i id="user-icon" class="fas fa-user-circle"></i>
+        <button id="connect-wallet-button" (click)="openMetamask()">Connect to Wallet</button>
+        <i id="arrow-down" class="fas fa-angle-down" (click)="openMetamask()"></i>
+        <i id="arrow-up" class="fas fa-angle-up" (click)="openMetamask()"></i>
+        <div id="dropdown-content">
+            <div class="account-describe">
+                <i class="fas fa-user-circle"></i>
+                <p id="account-describe-address"></p>
+            </div>
+            <div class="network-describe">
+                <p>Network</p>
+                <div class="active-network">
+                    <i class="far fa-dot-circle"></i>
+                    <p id="name-network"></p>
+                </div>
+            </div>
+            <div class="copy-address" (click)="copyAddress()">
+                <i class="far fa-clone"></i>
+                <p>Copy address</p>
+            </div>
+            <div class="disconnect-wallet" (click)="disconnectWallet()">
+                <i class="fas fa-wallet"></i>
+                <p>Disconnect Wallet</p>
+            </div>
+        </div>
+    </header>
+</div>
+
+<div class="description-item">
+    <p class="head-name">
+        Arcane Dashboard
+    </p>
+    <p>
+        Arcane is a decentralised non-custodial market protocol
+        where users can participate as depositors. 
+        Depositors provide liquidity to the market to earn a passive income through different types of vestings.
+    </p>
+</div>
+
+<div id="load-connect-wallet">
+    <div class="load-connect-wallet-icon"></div>
+    <p class="connect-wallet-describe">Please, connect your wallet</p>
+    <p>We couldn’t detect a wallet. Connect a wallet to dashboard.</p>
+    <button id="connect-wallet-button-2" (click)="openMetamask()">Connect to Wallet</button>
+</div>
+
+<div id="pools">
+    <!-- 1 pool  -->
+    <div class="pool-grid">
+        <div class="container">
+            <div class="pools-card">
+                <div class="container">
+                    <div class="pool-card-time-status">
+                        <span id="pool-1-time-status"> Status </span>
+                    </div>
+                    <div class="pool-card__header">
+                        <div class="pool-card__header__icon-box">
+                            <div class="pool-card__header__icon-box__pool-icon"></div>
+                            <div class="pool-card__header__icon-box__network-icon"></div>
+                        </div>
+                        <div class="pool-card__header__info">
+                            <h1 class="pool-card__header__info__name" id="pool-1-name">Pool name</h1>
+                            <p class="pool-card__header__info__pool-type">
+                                <span id="pool-1-type">Pool type</span>
+                            </p>
+                            <p class="pool-card__header__info__price" id="pool-1-price"> X Tokens = 1 UAH </p>
+                        </div>
+                        <div class="pool-card__header__status">
+                            <div id="pool-1-status">Status</div>
+                        </div>
+                    </div>
+                    <div class="pool-card__body">
+                        <div class="row">
+                            <div>
+                                <div class="pool-card__body__item__allocation">
+                                    <div class="pool-card__body__item__value" id="pool-1-allocation-value"> 0.00 </div>
+                                    <div class="pool-card__body__item__label" id="pool-1-allocation-label"> My allocation,
+                                        UAH </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="pool-card__body__item__invested">
+                                    <div class="pool-card__body__item__value" id="pool-1-invested-value"> 0.00 </div>
+                                    <div class="pool-card__body__item__label" id="pool-1-invested-label"> Invested, UAH
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="pool-card__body__item__progress__section">
+                                    <div class="pool-card__body__item__label">Progress</div>
+                                    <div class="pool-card__body__item__progress">
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar" id="pool-1-progress-bar"></div>
+                                        </div>
+                                        <div class="pool-card__body__item__progress__info">
+                                            <div class="pool-card__body__item__progress__info__left">
+                                                <div class="pool-card__body__item__progress__info__left__min"
+                                                    id="pool-1-progress-bar-percents"> 0% </div>
+                                            </div>
+                                            <div class="pool-card__body__item__progress__info__right">
+                                                <div class="pool-card__body__item__progress__info__right__max"
+                                                    id="pool-1-total-supply"> 0.00 Tokens </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pool-card__body__item-between__raise">
+                            <div class="pool-card__body__item-between__label"> Total Raise </div>
+                            <div class="pool-card__body__item-between__value" id="pool-1-total-raise"> X UAH</div>
+                        </div>
+                        <div class="pool-card__body__item-between__distribution">
+                            <div class="pool-card__body__item-between__label"> Total Distribution </div>
+                            <div class="pool-card__body__item-between__value" id="pool-1-total-supply-2"> X Tokens </div>
+                        </div>
+                        <div class="pool-card__body__item-between__duration">
+                            <div class="pool-card__body__item-between__label"> Pool Duration </div>
+                            <div class="pool-card__body__item-between__value" id="pool-1-duration"> Time </div>
+                        </div>
+                    </div> 
+                    <div class="pool-card__footer">
+                        <auc-button (onClick)="onOpenDepositModalClick()" 
+                            label="Deposit" id="pool-card__footer__btn-connect-wallet">
+                        </auc-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2 pool  -->
+    <div class="pool-grid">
+        <div class="container">
+            <div class="pools-card">
+                <div class="container">
+                    <div class="pool-card-time-status">
+                        <span id="pool-2-time-status"> Status </span>
+                    </div>
+                    <div class="pool-card__header">
+                        <div class="pool-card__header__icon-box">
+                            <div class="pool-card__header__icon-box__pool-icon"></div>
+                            <div class="pool-card__header__icon-box__network-icon"></div>
+                        </div>
+                        <div class="pool-card__header__info">
+                            <h1 class="pool-card__header__info__name" id="pool-2-name">Pool name</h1>
+                            <p class="pool-card__header__info__pool-type">
+                                <span id="pool-2-type">Pool type</span>
+                            </p>
+                            <p class="pool-card__header__info__price" id="pool-2-price"> X Tokens = 1 UAH </p>
+                        </div>
+                        <div class="pool-card__header__status">
+                            <div id="pool-2-status">Status</div>
+                        </div>
+                    </div>
+                    <div class="pool-card__body">
+                        <div class="row">
+                            <div>
+                                <div class="pool-card__body__item__allocation">
+                                    <div class="pool-card__body__item__value" id="pool-2-allocation-value"> 0.00 </div>
+                                    <div class="pool-card__body__item__label" id="pool-2-allocation-label"> My allocation,
+                                        UAH </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="pool-card__body__item__invested">
+                                    <div class="pool-card__body__item__value" id="pool-2-invested-value"> 0.00 </div>
+                                    <div class="pool-card__body__item__label" id="pool-2-invested-label"> Invested, UAH
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="pool-card__body__item__progress__section">
+                                    <div class="pool-card__body__item__label">Progress</div>
+                                    <div class="pool-card__body__item__progress">
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar" id="pool-2-progress-bar"></div>
+                                        </div>
+                                        <div class="pool-card__body__item__progress__info">
+                                            <div class="pool-card__body__item__progress__info__left">
+                                                <div class="pool-card__body__item__progress__info__left__min"
+                                                    id="pool-2-progress-bar-percents"> 0% </div>
+                                            </div>
+                                            <div class="pool-card__body__item__progress__info__right">
+                                                <div class="pool-card__body__item__progress__info__right__max"
+                                                    id="pool-2-total-supply"> 0.00 Tokens </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pool-card__body__item-between__raise">
+                            <div class="pool-card__body__item-between__label"> Total Raise </div>
+                            <div class="pool-card__body__item-between__value" id="pool-2-total-raise"> X UAH</div>
+                        </div>
+                        <div class="pool-card__body__item-between__distribution">
+                            <div class="pool-card__body__item-between__label"> Total Distribution </div>
+                            <div class="pool-card__body__item-between__value" id="pool-2-total-supply-2"> X Tokens </div>
+                        </div>
+                        <div class="pool-card__body__item-between__duration">
+                            <div class="pool-card__body__item-between__label"> Pool Duration </div>
+                            <div class="pool-card__body__item-between__value" id="pool-2-duration"> Time </div>
+                        </div>
+                    </div>
+                    <div class="pool-card__footer">
+                        <auc-button (onClick)="onOpenSwapModalClick()" 
+                            label="Swap" id="pool-card__footer__btn-connect-wallet">
+                        </auc-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 3 pool  -->
+    <div class="pool-grid">
+        <div class="container">
+            <div class="pools-card">
+                <div class="container">
+                    <div class="pool-card-time-status">
+                        <span id="pool-3-time-status"> Status </span>
+                    </div>
+                    <div class="pool-card__header">
+                        <div class="pool-card__header__icon-box">
+                            <div class="pool-card__header__icon-box__pool-icon"></div>
+                            <div class="pool-card__header__icon-box__network-icon"></div>
+                        </div>
+                        <div class="pool-card__header__info">
+                            <h1 class="pool-card__header__info__name" id="pool-3-name">Pool name</h1>
+                            <p class="pool-card__header__info__pool-type">
+                                <span id="pool-3-type">Pool type</span>
+                            </p>
+                            <p class="pool-card__header__info__price" id="pool-3-price"> X Tokens = 1 UAH </p>
+                        </div>
+                        <div class="pool-card__header__status">
+                            <div id="pool-3-status">Status</div>
+                        </div>
+                    </div>
+                    <div class="pool-card__body">
+                        <div class="row">
+                            <div>
+                                <div class="pool-card__body__item__allocation">
+                                    <div class="pool-card__body__item__value" id="pool-3-allocation-value"> 0.00 </div>
+                                    <div class="pool-card__body__item__label" id="pool-3-allocation-label"> My allocation,
+                                        UAH </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="pool-card__body__item__invested">
+                                    <div class="pool-card__body__item__value" id="pool-3-invested-value"> 0.00 </div>
+                                    <div class="pool-card__body__item__label" id="pool-3-invested-label"> Invested, UAH
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="pool-card__body__item__progress__section">
+                                    <div class="pool-card__body__item__label">Progress</div>
+                                    <div class="pool-card__body__item__progress">
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar" id="pool-3-progress-bar"></div>
+                                        </div>
+                                        <div class="pool-card__body__item__progress__info">
+                                            <div class="pool-card__body__item__progress__info__left">
+                                                <div class="pool-card__body__item__progress__info__left__min"
+                                                    id="pool-3-progress-bar-percents"> 0% </div>
+                                            </div>
+                                            <div class="pool-card__body__item__progress__info__right">
+                                                <div class="pool-card__body__item__progress__info__right__max"
+                                                    id="pool-3-total-supply"> 0.00 Tokens </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pool-card__body__item-between__raise">
+                            <div class="pool-card__body__item-between__label"> Total Raise </div>
+                            <div class="pool-card__body__item-between__value" id="pool-3-total-raise"> X UAH</div>
+                        </div>
+                        <div class="pool-card__body__item-between__distribution">
+                            <div class="pool-card__body__item-between__label"> Total Distribution </div>
+                            <div class="pool-card__body__item-between__value" id="pool-3-total-supply-2"> X Tokens </div>
+                        </div>
+                        <div class="pool-card__body__item-between_locked">
+                            <div class="pool-card__body__item-between__label"> Total Locked </div>
+                            <div class="pool-card__body__item-between__value" id="pool-3-locked"> 0.00 Tokens
+                            </div>
+                        </div>
+                        <div class="pool-card__body__item-between_received">
+                            <div class="pool-card__body__item-between__label"> Total Received
+                            </div>
+                            <div class="pool-card__body__item-between__value" id="pool-3-received"> 0.00 Tokens
+                            </div>
+                        </div>
+                        <div class="pool-card__body__item-between_available">
+                            <div class="pool-card__body__item-between__label"> Total Available
+                            </div>
+                            <div class="pool-card__body__item-between__value" id="pool-3-available"> 0.00 Tokens
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pool-card__footer">
+                        <auc-button (onClick)="onHarvestClick()" 
+                            label="Withdraw" id="pool-card__footer__btn-connect-wallet">
+                        </auc-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- 4 pool  -->
+     <div class="pool-grid">
+        <div class="container">
+            <div class="pools-card">
+                <div class="container">
+                    <div class="pool-card-time-status">
+                        <span id="pool-4-time-status"> Status </span>
+                    </div>
+                    <div class="pool-card__header">
+                        <div class="pool-card__header__icon-box">
+                            <div class="pool-card__header__icon-box__pool-icon"></div>
+                            <div class="pool-card__header__icon-box__network-icon"></div>
+                        </div>
+                        <div class="pool-card__header__info">
+                            <h1 class="pool-card__header__info__name" id="pool-4-name">Pool name</h1>
+                            <p class="pool-card__header__info__pool-type">
+                                <span id="pool-4-type">Pool type</span>
+                            </p>
+                            <p class="pool-card__header__info__price" id="pool-4-price"> X Tokens = 1 UAH </p>
+                        </div>
+                        <div class="pool-card__header__status">
+                            <div id="pool-4-status">Status</div>
+                        </div>
+                    </div>
+                    <div class="pool-card__body">
+                        <div class="row">
+                            <div>
+                                <div class="pool-card__body__item__allocation">
+                                    <div class="pool-card__body__item__value" id="pool-4-allocation-value"> 0.00 </div>
+                                    <div class="pool-card__body__item__label" id="pool-4-allocation-label"> My allocation,
+                                        UAH </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="pool-card__body__item__invested">
+                                    <div class="pool-card__body__item__value" id="pool-4-invested-value"> 0.00 </div>
+                                    <div class="pool-card__body__item__label" id="pool-4-invested-label"> Invested, UAH
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="pool-card__body__item__progress__section">
+                                    <div class="pool-card__body__item__label">Progress</div>
+                                    <div class="pool-card__body__item__progress">
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar" id="pool-4-progress-bar"></div>
+                                        </div>
+                                        <div class="pool-card__body__item__progress__info">
+                                            <div class="pool-card__body__item__progress__info__left">
+                                                <div class="pool-card__body__item__progress__info__left__min"
+                                                    id="pool-4-progress-bar-percents"> 0% </div>
+                                            </div>
+                                            <div class="pool-card__body__item__progress__info__right">
+                                                <div class="pool-card__body__item__progress__info__right__max"
+                                                    id="pool-4-total-supply"> 0.00 Tokens </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pool-card__body__item-between__raise">
+                            <div class="pool-card__body__item-between__label"> Total Raise </div>
+                            <div class="pool-card__body__item-between__value" id="pool-4-total-raise"> X UAH</div>
+                        </div>
+                        <div class="pool-card__body__item-between__distribution">
+                            <div class="pool-card__body__item-between__label"> Total Distribution </div>
+                            <div class="pool-card__body__item-between__value" id="pool-4-total-supply-2"> X Tokens </div>
+                        </div>
+                        <div class="pool-card__body__item-between__duration">
+                            <div class="pool-card__body__item-between__label"> Pool Duration </div>
+                            <div class="pool-card__body__item-between__value" id="pool-4-duration"> Time </div>
+                        </div>
+                    </div>
+                    <div class="pool-card__footer">
+                        <auc-button label="Deposit" id="pool-card__footer__btn-connect-wallet" [disabled]="true"></auc-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- how-it-works -->
+<div id="how-it-works__section">
+    <h2 class="how-it-works__title">How it Works</h2>
+    <div id="how-it-works__line" class="how-it-works__line"></div>
+    <div class="how-it-works__flex-container">
+        <div class="how-it-works__flex-container__iteam">
+            <div class="how-it-works__step-number">1</div>
+            <p class="how-it-works__step-title">
+                Approve
+            </p>
+            <p class="how-it-works__step-description">
+                This permission gives a third party like 
+                Arcane the right to facilitate a transaction with your token.
+            </p>
+        </div>
+        <div class="how-it-works__flex-container__iteam">
+            <div class="how-it-works__step-number">2</div>
+            <p class="how-it-works__step-title">
+                Deposit
+            </p>
+            <p class="how-it-works__step-description">
+                If you have not zero allocation you can deposit funds to Smart Contract.
+            </p>
+        </div>
+        <div class="how-it-works__flex-container__iteam">
+            <div class="how-it-works__step-number">3</div>
+            <p class="how-it-works__step-title">
+                Withdraw
+            </p>
+            <p class="how-it-works__step-description">
+                After the deposit while the vesting period lasts you can perform the harvest.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="future-section">
+    <h2 class="future__title">
+        An evolving community for an 
+        <br> 
+        evolving DeFi landscape
+    </h2>
+    <div class="future-section__flex-container">
+        <div class="future-section__flex-container__iteam">
+            <div class="future-section__background">
+                <i class="fas fa-wallet fa-5x"></i>
+                <span class="future-section__number">Wallet Connect</span>
+                <p class="future-section__text">Supported by Metamask</p>
+            </div>
+        </div>
+        <div class="future-section__flex-container__iteam">
+            <div class="future-section__background">
+                <i class="fas fa-network-wired fa-5x"></i>
+                <span class="future-section__number">Binance</span>
+                <p class="future-section__text">Smart Chain Supported</p>
+            </div>
+        </div>
+        <div class="future-section__flex-container__iteam">
+            <div class="future-section__background">
+                <i class="fas fa-users fa-5x"></i>
+                <span class="future-section__number">3</span>
+                <p class="future-section__text">Team Members</p>
+            </div>
+        </div>
+        <div class="future-section__flex-container__iteam">
+            <div class="future-section__background">
+                <i class="fas fa-coins fa-5x"></i>
+                <span class="future-section__number">UAH</span>
+                <p class="future-section__text">Deposit Currency</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- team -->
+<div id="team__container">
+    <h2 class="team__title">Our Team</h2>
+    <div class="team__flex-container">
+        <div class="flex-container__iteam">
+            <h3 class="member__name">Alina Kosak</h3>
+            <div class="member-info__wrapper">
+                <img src="./assets/images/Alina.png" alt="" class="member__image">
+                <p class="member__position">
+                    <span class="member__option">Title:</span> Solidity Developer
+                </p>
+                <p class="member__phone">
+                    <span class="member__option">Tel:</span> +380976976346
+                </p>
+                <p class="member__email">
+                    <span class="member__option">Email:</span> 
+                    <br>
+                    <a href="mailto:alinka.kosak@gmail.com" target="_blank"> alinka.kosak@gmail.com</a> 
+                </p>
+            </div>
+        </div>
+        <div class="flex-container__iteam">
+            <h3 class="member__name">Maksym Paranchych</h3>
+            <div class="member-info__wrapper">
+                <img src="./assets/images/Maks.png" alt="" class="member__image">
+                <p class="member__position">
+                    <span class="member__option">Title:</span> Solidity Developer
+                </p>
+                <p class="member__phone">
+                    <span class="member__option">Tel:</span> +380968612528
+                </p>
+                <p class="member__email">
+                    <span class="member__option">Email:</span> 
+                    <br>
+                    <a href="mailto:paranchich2002@gmail.com" target="_blank"> paranchich2002@gmail.com</a>
+                </p>
+            </div>
+        </div>
+        <div class="flex-container__iteam">
+            <h3 class="member__name">Vasyl Hryniuk</h3>
+            <div class="member-info__wrapper">
+                <img src="./assets/images/Vasyl.png" alt="" class="member__image">
+                <p class="member__position">
+                    <span class="member__option">Title:</span> Solidity Developer
+                </p>
+                <p class="member__phone">
+                    <span class="member__option">Tel:</span> +380987789551
+                </p>
+                <p class="member__email">
+                    <span class="member__option">Email:</span>
+                    <br>
+                    <a href="mailto:grinyuk309@gmail.com" target="_blank"> grinyuk309@gmail.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="secure-section">
+    <div class="secure-section__flex-container">
+        <div class="secure-section__flex-container__iteam">
+            <h3 class="secure-section__title">
+                Your assets,
+                <br>
+                secured
+            </h3>
+            <p class="secure-section__description">
+                Audited by the world’s leading security firms, security of the Arcane Protocol 
+                is the highest priority.
+            </p>
+        </div>
+        <div class="secure-section__flex-container__iteam">  
+            <div class="hexagon__container">
+                <div class="hexagon__flex-row">
+                    <div class="hexagon hexagon__logo_openzeppelin"></div>
+                    <div class="hexagon hexagon__logo_mythx"></div>
+                    <div class="hexagon hexagon__logo_manticore "></div>
+                </div>
+                <div class="hexagon__flex-row hexagon__flex-row_bottom">
+                    <div class="hexagon hexagon__logo_octopus"></div>
+                    <div class="hexagon hexagon__logo_oyente"></div>
+                    <div class="hexagon hexagon__logo_solhint"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="pre-footer">
+    <div class="pre-footer__flex-container">
+        <div class="flex-container__logo-wrapper">
+            <img class="pre-footer__arcane-logo" src="./assets/svg/icons/crystal.svg" alt="">
+            <img class="" src="./assets/svg/icons/arcaneLogoWhite.svg" alt="">
+        </div>
+        <a (click)="scrollToElement('header__wrapper')">Dashboard</a>
+        <a href="https://arcane-1.gitbook.io/arcane/main-smart-contracts/pool" target="_blank">Docs</a>
+        <a href="https://testnet.bscscan.com/" target="_blank">BSC Testnet</a>
+        <a (click)="scrollToElement('team__container')">Authors</a>
+        <a href="https://arcane-1.gitbook.io/arcane/faq" target="_blank">FAQ</a>
+    </div>
+</div>
+
+<footer id="footer">
+    <div class="footer__flex-container">
+        <div class="footer__flex-container__iteam">
+            <ul class="footer__media">
+                <li>
+                    <a href="https://github.com/ArcaneDeFi" target="_blank" class="footer__link-icon">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://discord.gg/kVkT7krW" target="_blank" class="footer__link-icon">
+                        <i class="fab fa-discord fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:arcane.defi@gmail.com" target="_blank" class="footer__link-icon">
+                        <i class="fas fa-envelope fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/home?lang=uk" target="_blank" class="footer__link-icon">
+                        <i class="fab fa-twitter fa-2x"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer__flex-container__iteam">
+            <ul class="footer__links">
+                <li><a href="https://github.com/ArcaneDeFi/arcane-contracts/blob/dev-hardhat/AT-ArcaneTokencontract.pdf" target="_blank">aTokens</a></li>
+                <li><a href="https://arcane-1.gitbook.io/arcane/bug-bounty" target="_blank">Bug Bounty</a></li>
+                <li><a href="https://arcane-1.gitbook.io/arcane/flash-loans" target="_blank">Flash Loans</a></li>
+                <li><a href="https://arcane-1.gitbook.io/arcane/borrow-interest-rate" target="_blank">Rate Switching</a></li>
+            </ul>
+        </div>
+        <div class="footer__flex-container__iteam">
+            <ul class="footer__links">
+                <li><a href="https://github.com/ArcaneDeFi/arcane-contracts/blob/dev-hardhat/AT-ArcaneTokencontract.pdf" target="_blank">Technical Paper</a></li>
+                <li><a href="https://github.com/ArcaneDeFi/arcane-contracts/blob/dev-hardhat/AT-ArcaneTokencontract.pdf" target="_blank">Arcanenomics</a></li>
+                <li><a href="https://arcane-1.gitbook.io/arcane/careers" target="_blank">Careers</a></li>
+            </ul>
+        </div>
+        <div class="footer__flex-container__iteam">
+            <ul class="footer__links">
+                <li><a href="#">Branding</a></li>
+                <li><a href="https://medium.com/" target="_blank">Blog</a></li>
+                <li><a href="mailto:arcane.defi@gmail.com" target="_blank">Contact</a></li>
+                <li><a href="https://arcane-1.gitbook.io/arcane/terms-of-use" target="_blank">Terms of Use</a></li>
+            </ul>
+        </div>
+        <div class="footer__flex-container__iteam">
+            <ul class="footer__links">
+                <li><a href="https://arcane-1.gitbook.io/arcane/privacy-policy" target="_blank">Privacy Policy</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<div id="donate-window">
+    <div class="donate-window__background">
+        <h4 class="donate-window__title">Investment</h4>
+        <img class="xmark" src="./assets/svg/icons/x-mark.svg" alt="" (click)="closeDonateWindow()">
+        <p class="donate-window__description">
+            If you want to
+            <br>
+            support the project
+        </p>
+        <a href="#" id="donate__button" (click)="donateAmount()">CLICK HERE</a>
+    </div>
+</div>
+
+<!-- <script type="module" src="js/script.js"></script>
+<script type="module" src="js/metamask.js"></script> -->
